@@ -65,6 +65,33 @@ describe('reducer', () => {
     expect(newState.showInfoModal).toEqual(true);
   })
 
+  //Make_Guess
+  it('should render feedback', () => {
+    const state = {
+      guesses: [1],
+      feedback: 'Game in progress',
+      correctAnswer: 75,
+      showInfoModal: true
+    };
+    const number = 70;
+    const action = makeGuess(number);
+    let newState = reducer(state, action);
+    expect(newState.feedback).toEqual("You\'re Hot!");
+    expect(newState.guesses).toEqual([1, number])
+  })
+it('should reject if not number', () => {
+  const state = {
+    guesses: [1],
+    feedback: 'Game in progress',
+    correctAnswer: 75,
+    showInfoModal: true
+  };
+  const number = '';
+  const action = makeGuess(number);
+  let newState = reducer(state, action);
+  expect(newState.feedback).toEqual("Please enter a valid number");
+  expect(newState.guesses).toEqual([1])
+})
 
 });
 
@@ -77,5 +104,3 @@ describe('reducer', () => {
   // handles NaN
   // test input - get right feedback, and adds guess to array
 
-// TOGGLE_INFO_MODAL
-// test that infoModal toggles state.showInfoModal

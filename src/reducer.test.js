@@ -33,6 +33,24 @@ describe('reducer', () => {
 
   })
 
+  // NEWGAME
+  it('Should set state to initial state on newGame action', () => {
+    const state = {
+      guesses: [1],
+      feedback: 'Game in progress',
+      correctAnswer: 75,
+      showInfoModal: true
+    };
+
+    const action = newGame();
+    const newState = reducer(state, action);
+    expect(newState.guesses.length).toEqual(0);
+    expect(newState.feedback).toEqual('Make your guess!');
+    expect(newState.showInfoModal).toEqual(false);
+    expect(newState.correctAnswer).toBeLessThanOrEqual(100);
+    expect(newState.correctAnswer).toBeGreaterThanOrEqual(0);
+  })
+
 
 });
 
@@ -42,8 +60,6 @@ describe('reducer', () => {
 
 
 
-//UNKNOWN PASSED
-// returns current state when unknown action passed
 
 // NEW_GAME
   // updates state correctly

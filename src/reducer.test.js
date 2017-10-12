@@ -41,7 +41,6 @@ describe('reducer', () => {
       correctAnswer: 75,
       showInfoModal: true
     };
-
     const action = newGame();
     const newState = reducer(state, action);
     expect(newState.guesses.length).toEqual(0);
@@ -51,6 +50,21 @@ describe('reducer', () => {
     expect(newState.correctAnswer).toBeGreaterThanOrEqual(0);
   })
 
+  // TOGGLE
+  it('Should toggle state.showInfoModal on toggleInfoModal action', () => {
+    const state = {
+      guesses: [1],
+      feedback: 'Game in progress',
+      correctAnswer: 75,
+      showInfoModal: true
+    };
+    const action = toggleInfoModal();
+    let newState = reducer(state, action);
+    expect(newState.showInfoModal).toEqual(false);
+    newState = reducer(newState, action);
+    expect(newState.showInfoModal).toEqual(true);
+  })
+
 
 });
 
@@ -58,11 +72,6 @@ describe('reducer', () => {
 
 
 
-
-
-
-// NEW_GAME
-  // updates state correctly
 
 // MAKE_GUESS
   // handles NaN

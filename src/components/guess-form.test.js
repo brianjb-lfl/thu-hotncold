@@ -14,17 +14,11 @@ describe('<GuessForm />', () => {
         const callback = jest.fn();
         const wrapper = mount(<GuessForm dispatch={callback} />);
         const value = 10;
-        console.log('wrapper', wrapper.debug());
+        
         wrapper.find('input[type="text"]').instance().value = value;
         wrapper.simulate('submit');
         expect(callback).toHaveBeenCalledWith(makeGuess(value.toString()));
     });
 
-    // it('Should reset the input when the form is submitted', () => {
-    //     const wrapper = mount(<GuessForm />);
-    //     const input = wrapper.find('input[type="text"]');
-    //     input.instance().value = 10;
-    //     wrapper.simulate('submit');
-    //     expect(input.instance().value).toEqual('');
-    // });
+    
 });
